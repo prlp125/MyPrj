@@ -12,7 +12,7 @@
 class Snake {
 public:
      Snake();
-    ~Snake();
+     ~Snake();
 
      int course() const noexcept {
          return m_course;

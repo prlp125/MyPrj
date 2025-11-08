@@ -7,9 +7,9 @@ World::World(size_t column, size_t row) : m_column {column},
     m_row {row},
     m_score  {0},
     m_isRun {false},
-    m_snakeS {std::make_unique<Snake>()},
-    m_timer {5000}
+    m_timer {TIMER_SB_MS}
 {
+    m_snakeS = std::make_unique<Snake>();
     createThread();
 }
 
@@ -72,7 +72,7 @@ void World::checkGetBonus()
         addNumSuperBonus();
 
     } else if(isSuperBonus(m_snakeS->snakeHead())) {
-        auto&& multScore = std::round(static_cast<double>(m_timer.currTime()) / 1000);
+        const auto&& multScore = std::round(static_cast<double>(m_timer.currTime()) / 1000);
         m_timer.reset();
         m_superBonus.clearSuperBonus();
         m_score += (4*static_cast<int>(multScore+1));
@@ -95,10 +95,9 @@ void World::checkIsSnake() {
 //------------------------------------------------------------------------------
 void World::addNumSuperBonus()
 {
-    m_numGive ++;
-    if(m_numGive == 5) {
+    if(++m_numGive == 5) {
         m_superBonus.startSuperBonusGen();
-        auto && vec = m_superBonus.superBonusPoints();
+        const auto &&vec = m_superBonus.superBonusPoints();
         while(std::any_of(vec.begin(), vec.end(), [this](const Point& p){
             return m_snakeS->isSnakeTail(p);
         }) || isSuperBonus(m_bonus.bonusPoint())){

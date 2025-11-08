@@ -34,7 +34,6 @@ target_compile_definitions(
     PRIVATE _CRT_SECURE_NO_WARNINGS
 )
 
-
 target_link_libraries(
     ${PROJECT_NAME}
 )

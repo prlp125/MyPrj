@@ -5,18 +5,18 @@
 
 class Timer {
 public:
-    Timer(int endTime) :
+    explicit Timer(int endTime) :
         m_startTime {std::chrono::milliseconds(0)},
         m_endTime {endTime},
         m_activate{false}
     {}
 
-    void start() {
+    void start() noexcept {
         m_activate = true;
         m_startTime = std::chrono::high_resolution_clock::now();
     }
 
-    void reset() {
+    void reset() noexcept {
         m_activate = false;
     }
 

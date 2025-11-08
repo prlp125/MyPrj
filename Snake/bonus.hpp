@@ -15,7 +15,7 @@ struct InteractiveObj {
 
 ////////////////////////////////////////////////////////////////////////////////
 struct Bonus : public InteractiveObj {
-    Bonus();
+    explicit Bonus();
 
     bool isInteractiveObj(const Point &p) const override;
     void startBonusGen();
@@ -31,7 +31,7 @@ private:
 
 ////////////////////////////////////////////////////////////////////////////////
 struct SuperBonus : public InteractiveObj {
-    SuperBonus();
+    explicit SuperBonus();
 
     bool isInteractiveObj(const Point &p) const override;
     void startSuperBonusGen();

@@ -11,7 +11,7 @@ public:
     Widget(std::unique_ptr<World>);
     ~Widget();
 private:
-    void deathScreen();
+    void deathScreen() const noexcept;
     void showMas();
     void showScore() const noexcept;
     void showTimer() const noexcept;

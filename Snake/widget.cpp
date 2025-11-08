@@ -39,17 +39,16 @@ void Widget::showTimer() const noexcept{
     if(m_world->isActiveTimer()){
         std::cout << "Time: ";
 
-        int koef = 5000 / 250 - static_cast<int>(5000 - m_world->currTime()) / 250;
+        int koef = TIMER_SB_MS / SPEED_TIMER_MS - static_cast<int>(TIMER_SB_MS - m_world->currTime()) / SPEED_TIMER_MS;
         for(int i = 0; i != koef; ++i) {
             std::cout << "#";
         }
-        std::cout << "/n " << m_world->currTime();
     }
 }
 
 
 //------------------------------------------------------------------------------
-void Widget::deathScreen()
+void Widget::deathScreen() const noexcept
 {
     system("CLS");
     std::cout << "          You DEAD             " << std::endl;
